@@ -4,24 +4,24 @@
   box-sizing: border-box;
 }
 
-.blog-preview{
+.post-preview{
   margin: 50px 100px 0;
   display: flex;
 }
 
-.blog-preview .blog-title{
+.post-preview .post-title{
   font-size: 24px;
   text-decoration: none;
   color :rgb(26, 90, 164);
   font-weight: bold;
 }
 
-.blog-preview img{
+.post-preview img{
   height: 172px;
   width: 30%;
 }
 
-.blog-preview .blog-preview-container{
+.post-preview .post-preview-container{
   width: 100%;
   margin-left: 24px;
   border-width: 1px;
@@ -29,22 +29,22 @@
   padding: 8px ;
 }
 
-.blog-preview .blog-infor{
+.post-preview .post-infor{
   display: flex;
   margin-top: 8px;
   margin-bottom: 8px;
 }
 
-.blog-preview .blog-preContent{
+.post-preview .post-preContent{
   height: 64px;
   margin: 8px 0;
 }
 
-.blog-infor p {
+.post-infor p {
   width: 33%;
 }
 
-.blog-preview .blog-learnMore{
+.post-preview .post-learnMore{
   float: right;
   text-decoration: none;
   color: blue;

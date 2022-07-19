@@ -1,127 +1,56 @@
-import React, { useEffect, useState } from "react";
-import { PreviewBlogs } from "./components/PreviewBlogs";
+import React, {useEffect, useState} from "react";
+import {Header} from "./components/header/Header";
+import thumbnail1 from "./images/blog-image1.webp";
+import thumbnail2 from "./images/blog-image2.webp";
+import thumbnail3 from "./images/blog-image3.webp";
+import moment from "moment";
 
-const initialData = [
-  {
-    id: 1,
-    category: "Fruits",
-    price: "$1",
-    stocked: true,
-    name: "Apple",
-  },
-  {
-    id: 2,
-    category: "Fruits",
-    price: "$1",
-    stocked: true,
-    name: "Dragonfruit",
-  },
-  {
-    id: 3,
-    category: "Fruits",
-    price: "$2",
-    stocked: false,
-    name: "Passionfruit",
-  },
-  {
-    id: 4,
-    category: "Vegetables",
-    price: "$2",
-    stocked: true,
-    name: "Spinach",
-  },
-  {
-    id: 5,
-    category: "Vegetables",
-    price: "$4",
-    stocked: false,
-    name: "Pumpkin",
-  },
-  {
-    id: 6,
-    category: "Vegetables",
-    price: "$1",
-    stocked: true,
-    name: "Peas",
-  },
-];
 
-const Category = {
-  Fruits: "Fruits",
-  Vegetables: "Vegetables",
-};
+const dateFormat = "YYYY-MM-DD";
+const date = new Date("2020-06-24 22:57:36");
+
+const dateTime = moment(date).format(dateFormat);
+const initPosts = [
+    {
+        id: 1,
+        title: "This vault of SNES manuals is an amazing resource for fans of gaming history",
+        previewContent: "Every English-language Super Nintendo game manual is accounted for",
+        content: "This is a supper long contentttttttttttttttttttttttttttt",
+        authorName: "Chris Welch",
+        createdOn: dateTime,
+        updatedOn: dateTime,
+        thumbnail: thumbnail1,
+    },
+    {
+        id: 2,
+        title: "Amazon expands Prime Video’s Watch Party feature to Roku, smart TVs, and more",
+        previewContent: "Every English-language Super Nintendo game manual is accounted for",
+        content: "This is a supper long contentttttttttttttttttttttttttttt",
+        authorName: "Chris Welch",
+        createdOn: dateTime,
+        updatedOn: dateTime,
+        thumbnail: thumbnail2,
+    },
+    {
+        id: 3,
+        title: "Amazon is using electric cargo bikes that look like mini-trucks to make deliveries in the UK",
+        previewContent: "Every English-language Super Nintendo game manual is accounted for",
+        content: "This is a supper long contentttttttttttttttttttttttttttt",
+        authorName: "Chris Welch",
+        createdOn: dateTime,
+        updatedOn: dateTime,
+        thumbnail: thumbnail3,
+    },
+]
 
 function App() {
-  const [isInstock, setIsInstock] = useState(false);
-  const [keyword, setKeyword] = useState("");
 
-  const [data, setData] = useState(initialData);
-  const [dataFiltered, setDataFiltered] = useState(initialData);
-
-  useEffect(() => {
-    handleClick();
-  }, [isInstock]);
-
-  const vegetablesCategory = dataFiltered.filter(
-    (product) => product.category === Category.Vegetables
-  );
-
-  const fruitsCategory = dataFiltered.filter(
-    (product) => product.category === Category.Fruits
-  );
-
-  function handleChange(event) {
-    setKeyword(event.target.value);
-    setDataFiltered(
-      data.filter((e) =>
-        e.name.toLocaleLowerCase().includes(keyword.toLocaleLowerCase())
-      )
+    return (
+        <div className="App">
+            <Header/>
+            {/*<Post post={initPosts[0]}/>*/}
+        </div>
     );
-  }
-
-  console.log({ data });
-
-  function handleClick() {
-    console.log("asd");
-    setDataFiltered(data.filter((e) => !isInstock || e.stocked));
-  }
-
-  // return (
-  //   <div className="App">
-  //     <table className="product-table">
-  //       <SearchBar
-  //         keyword={keyword}
-  //         handleChange={handleChange}
-  //         isInstock={isInstock}
-  //         setIsInStock={setIsInstock}
-  //       />
-  //       <thead>
-  //         <tr>
-  //           <th>Name</th>
-  //           <th>Price</th>
-  //         </tr>
-  //       </thead>
-  //       <tbody>
-  //         <ProductCategory
-  //           key={Category.Fruits}
-  //           products={fruitsCategory}
-  //           productCategoryname={Category.Fruits}
-  //         />
-  //         <ProductCategory
-  //           key={Category.Vegetables}
-  //           products={vegetablesCategory}
-  //           productCategoryname={Category.Vegetables}
-  //         />
-  //       </tbody>
-  //     </table>
-  //   </div>
-  // );
-
-  return (
-    <div className="App">
-      <PreviewBlogs />
-    </div>
-  );
 }
 
 export default App;

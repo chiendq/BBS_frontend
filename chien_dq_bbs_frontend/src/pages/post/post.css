@@ -1,0 +1,25 @@
+.post-container {
+    margin: 10%;
+    padding: 3%;
+    border: gray solid thin;
+}
+
+.post-title a {
+    text-decoration: none;
+    color: #000;
+    font-size: 30px;
+}
+
+.post-info {
+    display: flex;
+    width: 70%;
+}
+
+.post-info p {
+    width: 33%;
+    color: gray;
+}
+
+.post-content {
+
+}
