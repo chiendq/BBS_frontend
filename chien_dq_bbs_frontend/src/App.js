@@ -1,8 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Header} from "./components/header/Header";
-import thumbnail1 from "./images/blog-image1.webp";
-import thumbnail2 from "./images/blog-image2.webp";
-import thumbnail3 from "./images/blog-image3.webp";
 import moment from "moment";
 
 
@@ -10,45 +7,49 @@ const dateFormat = "YYYY-MM-DD";
 const date = new Date("2020-06-24 22:57:36");
 
 const dateTime = moment(date).format(dateFormat);
-const initPosts = [
-    {
-        id: 1,
-        title: "This vault of SNES manuals is an amazing resource for fans of gaming history",
-        previewContent: "Every English-language Super Nintendo game manual is accounted for",
-        content: "This is a supper long contentttttttttttttttttttttttttttt",
-        authorName: "Chris Welch",
-        createdOn: dateTime,
-        updatedOn: dateTime,
-        thumbnail: thumbnail1,
-    },
-    {
-        id: 2,
-        title: "Amazon expands Prime Video’s Watch Party feature to Roku, smart TVs, and more",
-        previewContent: "Every English-language Super Nintendo game manual is accounted for",
-        content: "This is a supper long contentttttttttttttttttttttttttttt",
-        authorName: "Chris Welch",
-        createdOn: dateTime,
-        updatedOn: dateTime,
-        thumbnail: thumbnail2,
-    },
-    {
-        id: 3,
-        title: "Amazon is using electric cargo bikes that look like mini-trucks to make deliveries in the UK",
-        previewContent: "Every English-language Super Nintendo game manual is accounted for",
-        content: "This is a supper long contentttttttttttttttttttttttttttt",
-        authorName: "Chris Welch",
-        createdOn: dateTime,
-        updatedOn: dateTime,
-        thumbnail: thumbnail3,
-    },
-]
 
 function App() {
+
+    const [data, setData] = useState({
+        data: [],
+        total_page: 0,
+        count: 0,
+        page: 0,
+        page_size: 0
+    })
+
+    React.useEffect(() => {
+        fetch('http://localhost:9000/posts', {method: "GET"})
+            .then(result => result.json())
+            .then(data => {
+                setData({...data, data: data.data})
+            })
+    }, [])
 
     return (
         <div className="App">
             <Header/>
-            {/*<Post post={initPosts[0]}/>*/}
+            {data.data.map((post) => (
+                <div className="post-preview" key={post.id}>
+                    <img src={`http://localhost:9000/thumbnails/${post.thumbnail}`} alt={post.title}/>
+                    <div className="post-preview-container">
+                        <a href="#" className="post-title">
+                            {post.title}
+                        </a>
+                        <div className="post-infor">
+                            <p>Author: {post.authorName}</p>
+                            <p>Created on: {post.createdAt} </p>
+                            <p>Updated on: {post.updatedOn} </p>
+                        </div>
+                        <p className="post-preContent">{post.content.substring(0,150)}...</p>
+                        <div>
+                            <a href="#" className="post-learnMore">
+                                LEARN MORE
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            ))};
         </div>
     );
 }
