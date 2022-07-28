@@ -40,40 +40,45 @@ function App() {
 
     };
 
-    return (
-        <div className="App">
-            <Header/>
-            {paged.data.map((post) => (
-                <div className="post-preview" key={post.id}>
-                    <img src={`http://localhost:9000/thumbnails/${post.thumbnail}`} alt={post.title}/>
-                    <div className="post-preview-container">
-                        <a href="#" className="post-title">
-                            {post.title}
-                        </a>
-                        <div className="post-infor">
-                            <p>Author: {post.authorName}</p>
-                            <p>Created on: {post.createdAt} </p>
-                            <p>Updated on: {post.updatedOn} </p>
-                        </div>
-                        <p className="post-preContent">{post.content.substring(0,150)}...</p>
-                        <div>
-                            <a href="#" className="post-learnMore">
-                                LEARN MORE
+    return (<>
+
+            <div className="App">
+                <Header/>
+                {paged.data.map((post) => (
+                    <div className="post-preview" key={post.id}>
+                        <img src={`http://localhost:9000/thumbnails/${post.thumbnail}`} alt={post.title}/>
+                        <div className="post-preview-container">
+                            <a href="#" className="post-title">
+                                {post.title}
                             </a>
+                            <div className="post-infor">
+                                <p>Author: {post.authorName}</p>
+                                <p>Created on: {post.createdAt} </p>
+                                <p>Updated on: {post.updatedOn} </p>
+                            </div>
+                            <p className="post-preContent">{post.content.substring(0, 200)}...</p>
+                            <div>
+                                <a href="#" className="post-learnMore">
+                                    LEARN MORE
+                                </a>
+                                <a href="#" className="post-export">
+                                    EXPORT
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
-            <ReactPaginate
-                previousLabel={"prev"}
-                nextLabel={"next"}
-                breakLabel={"..."}
-                pageCount={paged.total_page}
-                onPageChange={handlePageClick}
-                containerClassName={"pagination"}
-                subContainerClassName={"pages pagination"}
-                activeClassName={"active"}/>
-        </div>
+                ))}
+                <ReactPaginate
+                    previousLabel={"<"}
+                    nextLabel={">"}
+                    breakLabel={"..."}
+                    pageCount={paged.total_page}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
+            </div>
+        </>
     );
 }
 
