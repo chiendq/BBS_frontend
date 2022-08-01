@@ -1,4 +1,5 @@
 import './Header.css'
+import {Link} from "react-router-dom";
 export const Header = () => {
     // const style = {
     //     color: "white",
@@ -14,8 +15,9 @@ export const Header = () => {
     return (
         <>
             <div className={"header"}>
-                <a href="/" className={"header-home "}>Home</a>
-                <a href="/login/Login" className={"header-login"}>Login</a>
+                <Link to="/" className={"header-home "}>Home</Link>
+                <Link to="/newPost" className={"header-newPost"}>New Post</Link>
+                <Link to="/login" className={"header-login"}>Login</Link>
             </div>
         </>
     )

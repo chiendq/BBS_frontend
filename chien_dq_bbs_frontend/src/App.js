@@ -8,7 +8,7 @@ const date = new Date("2020-06-24 22:57:36");
 
 const dateTime = moment(date).format(dateFormat);
 
-const pageSize = 2
+const pageSize = 10
 
 function App() {
 
