@@ -16,10 +16,14 @@ export const Login = () => {
     const onSubmit = data => {
         axios.post(`http://localhost:9000/login`, data, {withCredentials: true})
             .then(res => {
-                localStorage.setItem("username",res.data)
-                navigate("/", { replace: true });            })
+                let data = res.data
+                localStorage.setItem("username",data.username)
+                localStorage.setItem("accountId",data.accountId)
+                toast("Logged in <3")
+                setTimeout(() => navigate("/", { replace: true }), 2000)
+                })
             .catch(e =>{
-                toast("Username or password incorrect!")
+                toast.error("Username or password incorrect!")
             })
     }
 

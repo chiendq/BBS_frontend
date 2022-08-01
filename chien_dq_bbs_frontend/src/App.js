@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {Header} from "./components/header/Header";
 import moment from "moment";
 import ReactPaginate from "react-paginate";
+import {Link} from "react-router-dom";
+import {ToastContainer} from "react-toastify";
 
 const dateFormat = "YYYY-MM-DD";
 const date = new Date("2020-06-24 22:57:36");
@@ -41,16 +43,13 @@ function App() {
     };
 
     return (<>
-
             <div className="App">
                 <Header/>
                 {paged.data.map((post) => (
                     <div className="post-preview" key={post.id}>
                         <img src={`http://localhost:9000/thumbnails/${post.thumbnail}`} alt={post.title}/>
                         <div className="post-preview-container">
-                            <a href="#" className="post-title">
-                                {post.title}
-                            </a>
+                            <Link to={`/posts/${post.id}`} className={"post-title "}>{post.title}</Link>
                             <div className="post-infor">
                                 <p>Author: {post.authorName}</p>
                                 <p>Created on: {post.createdAt} </p>

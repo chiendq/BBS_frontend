@@ -5,6 +5,8 @@ import App from "./App";
 import {Route, Routes, BrowserRouter} from "react-router-dom";
 import {Login} from "./pages/login/Login";
 import {NewPost} from "./pages/newPost/NewPost";
+import {PostDetail} from "./pages/post/PostDetail";
+import {Signup} from "./pages/Signup/Signup";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -15,7 +17,10 @@ root.render(
           <Routes>
               <Route exact path="/" element={<App/>} />
               <Route path={'/login'} element={<Login/>} />
+              <Route path={'/signup'} element={<Signup/>} />
+              <Route path={'/logout'} element={<App/>}/>
               <Route path={'/newPost'} element={<NewPost/>}/>
+              <Route path={'/posts/:id'} element={<PostDetail/>}/>
           </Routes>
       </BrowserRouter>
   </React.StrictMode>
