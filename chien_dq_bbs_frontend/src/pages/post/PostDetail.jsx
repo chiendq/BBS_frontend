@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {Header} from "../../components/header/Header";
 import { CSVLink } from "react-csv";
+import {Export} from "../../components/Export";
 
 export const PostDetail = () => {
 
@@ -47,7 +48,8 @@ export const PostDetail = () => {
                         <p className={"post-updated-on"}>Updated on: {post.updatedOn} </p>
                     </div>
                     <div className={"btn-Export"}>
-                        <CSVLink {...csvReport}>Export to CSV</CSVLink>
+                        {/*<CSVLink {...csvReport}>Export to CSV</CSVLink>*/}
+                        <Export post={post}/>
                     </div>
                     <div className={"post-content"}>{post.content}</div>
                 </div>

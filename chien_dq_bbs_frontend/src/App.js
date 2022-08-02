@@ -4,6 +4,7 @@ import moment from "moment";
 import ReactPaginate from "react-paginate";
 import {Link} from "react-router-dom";
 import {ToastContainer} from "react-toastify";
+import {Export} from "./components/Export";
 
 const dateFormat = "YYYY-MM-DD";
 const date = new Date("2020-06-24 22:57:36");
@@ -57,12 +58,8 @@ function App() {
                             </div>
                             <p className="post-preContent">{post.content.substring(0, 200)}...</p>
                             <div>
-                                <a href="#" className="post-learnMore">
-                                    LEARN MORE
-                                </a>
-                                <a href="#" className="post-export">
-                                    EXPORT
-                                </a>
+                                <Link to={`/posts/${post.id}`} className={"post-learnMore"}>Learn more</Link>
+                                <Export post={post}/>
                             </div>
                         </div>
                     </div>
