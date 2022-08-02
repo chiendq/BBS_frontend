@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import {Header} from "./components/header/Header";
 import moment from "moment";
 import ReactPaginate from "react-paginate";
 import {Link} from "react-router-dom";
-import {ToastContainer} from "react-toastify";
 import {Export} from "./components/Export";
+import {Navbar} from "./components/navbar/Navbar";
+import {ScrollButton} from "./components/scrollButton/ScrollButton";
 
 const dateFormat = "YYYY-MM-DD";
 const date = new Date("2020-06-24 22:57:36");
@@ -24,7 +24,9 @@ function App() {
     })
 
     React.useEffect(() => {
-        fetch(`http://localhost:9000/posts?pageSize=${pageSize}&pageNumber=${paged.page}`, {method: "GET"})
+        fetch(`http://localhost:9000/posts?pageSize=${pageSize}&pageNumber=${paged.page}`,
+            {method: "GET"}
+            )
             .then(result => result.json())
             .then(data => {
                 setPaged(data)
@@ -36,16 +38,13 @@ function App() {
 
         setPaged({
             ...paged,
-            page: selectedPage,
-        })
-
-        console.log(paged.page)
-
+            page: selectedPage,})
     };
 
     return (<>
             <div className="App">
-                <Header/>
+                <Navbar/>
+                <ScrollButton/>
                 {paged.data.map((post) => (
                     <div className="post-preview" key={post.id}>
                         <img src={`http://localhost:9000/thumbnails/${post.thumbnail}`} alt={post.title}/>

@@ -1,10 +1,10 @@
-import {Header} from "../../components/header/Header";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {useForm} from "react-hook-form";
 import './NewPost.css'
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {Navbar} from "../../components/navbar/Navbar";
 
 export const NewPost = () => {
 
@@ -38,19 +38,19 @@ export const NewPost = () => {
                 navigate("/", { replace: true });
             })
             .catch(e => {
-                toast(e.response.data)
+                toast(`Failed to create post! Reason: ${e.response.data}`)
             })
     }
 
     return (
         <>
             <ToastContainer/>
-            <Header/>
-            <h2>Create new post</h2>
+            <Navbar/>
             <form onSubmit={handleSubmit(onSubmit)} className="newPost-container newPost">
+                <h2 className={"page-title"}>Create new post</h2>
                 <p><input type="text" placeholder="Title *" {...register("title", {required: true})} /></p>
                 <p><input type="text" placeholder="Author *" {...register("authorName", {required: true})} /></p>
-                <p><input type="text" placeholder="Content *" {...register("content", {required: true})} /></p>
+                <p><textarea placeholder="Content *" {...register("content", {required: true})} /></p>
                 <p><input type={"file"} placeholder="Thumbnail *" {...register("thumbnail", {required: true})}/></p>
                 <p><input type="submit"/></p>
             </form>

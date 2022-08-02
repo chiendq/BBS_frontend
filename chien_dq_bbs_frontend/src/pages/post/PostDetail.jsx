@@ -1,9 +1,8 @@
 import './PostDetail.css'
 import {useParams} from "react-router-dom";
-import React, {useEffect, useState} from "react";
-import {Header} from "../../components/header/Header";
-import { CSVLink } from "react-csv";
+import React, { useState} from "react";
 import {Export} from "../../components/Export";
+import {Navbar} from "../../components/navbar/Navbar";
 
 export const PostDetail = () => {
 
@@ -37,7 +36,7 @@ export const PostDetail = () => {
     return (
         <>
             <div>
-                <Header/>
+                <Navbar/>
                 <div className={"post-container"}>
                     <div className="post-title">
                         <a href="#">{post.title}</a>

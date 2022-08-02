@@ -2,7 +2,7 @@
 
 .newPost {
     background: #456;
-    width: 400px;
+    width: 80%;
     margin: 16px auto;
     font-size: 16px;
 }
@@ -43,7 +43,7 @@
     padding: 12px;
 }
 
-.newPost input {
+.newPost input, .newPost textarea {
     box-sizing: border-box;
     display: block;
     width: 100%;
@@ -54,7 +54,10 @@
     font-family: inherit;
     font-size: 0.95em;
 }
-
+.newPost textarea{
+    height: 300px;
+    resize: none;
+}
 .newPost input[type="email"],
 .newPost input[type="password"] {
     background: #fff;
@@ -82,4 +85,10 @@
 /* Buttons' focus effect */
 .newPost input[type="submit"]:focus {
     border-color: #05a;
+}
+
+.page-title{
+    text-align: center;
+    color: #17c;
+    font-size: 30px;
 }

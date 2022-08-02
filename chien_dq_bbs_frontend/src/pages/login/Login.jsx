@@ -1,11 +1,10 @@
 import './Login.css'
 import {useForm} from 'react-hook-form'
-import {Header} from "../../components/header/Header";
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {Navbar} from "../../components/navbar/Navbar";
 
 export const Login = () => {
 
@@ -14,6 +13,8 @@ export const Login = () => {
     let navigate = useNavigate();
 
     const onSubmit = data => {
+        // console.log(/^[a-zA-Z0-9\\.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(data.email))
+
         axios.post(`http://localhost:9000/login`, data, {withCredentials: true})
             .then(res => {
                 let data = res.data
@@ -23,14 +24,14 @@ export const Login = () => {
                 setTimeout(() => navigate("/", { replace: true }), 2000)
                 })
             .catch(e =>{
-                toast.error("Username or password incorrect!")
+                toast.error(e.response.data)
             })
     }
 
     return (
         <>
             <ToastContainer />
-            <Header/>
+            <Navbar/>
             <form onSubmit={handleSubmit(onSubmit)} className="login-container login">
                 <h2 className="login-header">Log in</h2>
                 <p><input type="email" placeholder="Email" {...register("email", {required: true})} /></p>
