@@ -14,8 +14,6 @@ export const Signup = () => {
     let navigate = useNavigate();
 
     const onSubmit = data => {
-        console.log(data.password)
-        console.log(data.rePassword)
         if (data.password === data.rePassword) {
             // const formData = new FormData();
             // formData.append("email", data.email)
@@ -24,7 +22,7 @@ export const Signup = () => {
 
             axios.post(`http://localhost:9000/register`, data, {withCredentials: true})
                 .then(res => {
-                    toast("Wellcome <3")
+                    toast("Welcome <3")
                     setTimeout(() => navigate("/login", {replace: true}), 2000)
                 })
                 .catch(e => {

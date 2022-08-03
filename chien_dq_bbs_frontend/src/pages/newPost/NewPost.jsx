@@ -5,6 +5,7 @@ import './NewPost.css'
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {Navbar} from "../../components/navbar/Navbar";
+import {useState} from "react";
 
 export const NewPost = () => {
 
@@ -16,6 +17,8 @@ export const NewPost = () => {
         thumbnail: null
     }
 });
+
+    const [test, setTest] = useState()
 
     let navigate = useNavigate();
 
@@ -42,6 +45,12 @@ export const NewPost = () => {
             })
     }
 
+    const handleFileOnChanged = (e) => {
+        setTest(e.target.files[0])
+    }
+
+    console.log(test)
+
     return (
         <>
             <ToastContainer/>
@@ -51,7 +60,8 @@ export const NewPost = () => {
                 <p><input type="text" placeholder="Title *" {...register("title", {required: true})} /></p>
                 <p><input type="text" placeholder="Author *" {...register("authorName", {required: true})} /></p>
                 <p><textarea placeholder="Content *" {...register("content", {required: true})} /></p>
-                <p><input type={"file"} placeholder="Thumbnail *" {...register("thumbnail", {required: true})}/></p>
+                <p><input accept={["image/png","image/jpeg"]} type={"file"} placeholder="Thumbnail *" {...register("thumbnail", {required: true})}/></p>
+                <p><img id="blah" src="#" alt="your image" /></p>
                 <p><input type="submit"/></p>
             </form>
         </>

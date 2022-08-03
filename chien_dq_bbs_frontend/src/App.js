@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {Export} from "./components/Export";
 import {Navbar} from "./components/navbar/Navbar";
 import {ScrollButton} from "./components/scrollButton/ScrollButton";
+import ReactLoading from 'react-loading';
 
 const dateFormat = "YYYY-MM-DD";
 const date = new Date("2020-06-24 22:57:36");
@@ -14,6 +15,11 @@ const dateTime = moment(date).format(dateFormat);
 const pageSize = 10
 
 function App() {
+    const Loading = ({ type, color }) => (
+        <ReactLoading type={type} color={color} height={667} width={375} />
+    );
+
+    const [loading, setLoading] = useState(true)
 
     const [paged, setPaged] = useState({
         data: [],
@@ -29,12 +35,14 @@ function App() {
             )
             .then(result => result.json())
             .then(data => {
+                setLoading(false)
                 setPaged(data)
             })
     }, [paged.page])
 
     const handlePageClick = (e) => {
         const selectedPage = e.selected + 1
+        setLoading(true)
 
         setPaged({
             ...paged,
@@ -45,24 +53,31 @@ function App() {
             <div className="App">
                 <Navbar/>
                 <ScrollButton/>
-                {paged.data.map((post) => (
-                    <div className="post-preview" key={post.id}>
-                        <img src={`http://localhost:9000/thumbnails/${post.thumbnail}`} alt={post.title}/>
-                        <div className="post-preview-container">
-                            <Link to={`/posts/${post.id}`} className={"post-title "}>{post.title}</Link>
-                            <div className="post-infor">
-                                <p>Author: {post.authorName}</p>
-                                <p>Created on: {post.createdAt} </p>
-                                <p>Updated on: {post.updatedOn} </p>
-                            </div>
-                            <p className="post-preContent">{post.content.substring(0, 200)}...</p>
-                            <div>
-                                <Link to={`/posts/${post.id}`} className={"post-learnMore"}>Learn more</Link>
-                                <Export post={post}/>
+                <div className={"posts-container"}>
+                    {paged.data.map((post) => (
+                        <div className="post-preview" key={post.id}>
+                            <img src={`http://localhost:9000/thumbnails/${post.thumbnail}`} alt={post.title}/>
+                            <div className="post-preview-container">
+                                <Link to={`/posts/${post.id}`} className={"post-title "}>{post.title}</Link>
+                                <div className="post-infor">
+                                    <p>Author: {post.authorName}</p>
+                                    <p>Created on: {post.createdAt} </p>
+                                    <p>Updated on: {post.updatedOn} </p>
+                                </div>
+                                <p className="post-preContent">{post.content.substring(0, 200)}...</p>
+                                <div>
+                                    <Link to={`/posts/${post.id}`} className={"post-learnMore"}>Learn more</Link>
+                                    <Export post={post}/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
+                {loading &&
+                <div style={{position: "fixed", display: "flex", alignItems: "center",justifyContent:"center", width: "100%", zIndex: 9999999, top: 0}}>
+                    <Loading type={"balls"} color={"blue"}/>
+                </div>
+                }
                 <ReactPaginate
                     previousLabel={"<"}
                     nextLabel={">"}
