@@ -8,7 +8,6 @@ import {Navbar} from "../../components/navbar/Navbar";
 import {useState} from "react";
 
 export const NewPost = () => {
-
     const {register, handleSubmit, formState: {errors}} = useForm({
     defaultValues: {
         title: "",
@@ -42,14 +41,10 @@ export const NewPost = () => {
             })
             .catch(e => {
                 toast(`Failed to create post! Reason: ${e.response.data}`)
+                localStorage.clear()
+                navigate("/login", { replace: true });
             })
     }
-
-    const handleFileOnChanged = (e) => {
-        setTest(e.target.files[0])
-    }
-
-    console.log(test)
 
     return (
         <>
@@ -60,8 +55,8 @@ export const NewPost = () => {
                 <p><input type="text" placeholder="Title *" {...register("title", {required: true})} /></p>
                 <p><input type="text" placeholder="Author *" {...register("authorName", {required: true})} /></p>
                 <p><textarea placeholder="Content *" {...register("content", {required: true})} /></p>
-                <p><input accept={["image/png","image/jpeg"]} type={"file"} placeholder="Thumbnail *" {...register("thumbnail", {required: true})}/></p>
-                <p><img id="blah" src="#" alt="your image" /></p>
+                <input accept={["image/png","image/jpeg"]} type={"file"} placeholder="Thumbnail *" {...register("thumbnail", {required: true})}/>
+                <img id="blah" src="#" alt="your image" />
                 <p><input type="submit"/></p>
             </form>
         </>

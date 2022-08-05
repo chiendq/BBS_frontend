@@ -18,21 +18,6 @@ export const PostDetail = () => {
             })
     }, [])
 
-    const headers = [
-        { label: "Title", key: "title" },
-        { label: "Author name", key: "authorName" },
-        { label: "Content", key: "content" },
-        { label: "Created at", key: "createdAt" },
-        { label: "Updated on", key: "updatedOn" }
-    ];
-
-    const csvReport = {
-        data: [post],
-        headers: headers,
-        filename: 'Post_Report.csv'
-    };
-
-
     return (
         <>
             <div>
@@ -45,10 +30,9 @@ export const PostDetail = () => {
                         <p className={"post-author"}>Author: {post.authorName}</p>
                         <p className={"post-created-at"}>Created at: {post.createdAt} </p>
                         <p className={"post-updated-on"}>Updated on: {post.updatedOn} </p>
-                    </div>
-                    <div className={"btn-Export"}>
-                        {/*<CSVLink {...csvReport}>Export to CSV</CSVLink>*/}
-                        <Export post={post}/>
+                        <div className={"btn-export"}>
+                            <Export post={post}/>
+                        </div>
                     </div>
                     <div className={"post-content"}>{post.content}</div>
                 </div>

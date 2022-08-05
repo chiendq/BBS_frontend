@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import {Route, Routes, BrowserRouter} from "react-router-dom";
+import {Route, Routes, BrowserRouter, Navigate} from "react-router-dom";
 import {Login} from "./pages/login/Login";
 import {NewPost} from "./pages/newPost/NewPost";
 import {PostDetail} from "./pages/post/PostDetail";
 import {Signup} from "./pages/Signup/Signup";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
 
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
@@ -19,7 +19,7 @@ root.render(
               <Route path={'/login'} element={<Login/>} />
               <Route path={'/signup'} element={<Signup/>} />
               <Route path={'/logout'} element={<App/>}/>
-              <Route path={'/newPost'} element={<NewPost/>}/>
+              <Route path={'/posts/new'} element={<NewPost/>}/>
               <Route path={'/posts/:id'} element={<PostDetail/>}/>
           </Routes>
       </BrowserRouter>

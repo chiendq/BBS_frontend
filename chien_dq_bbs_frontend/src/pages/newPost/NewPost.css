@@ -1,8 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 .newPost {
-    background: #456;
-    width: 80%;
+    background: #8a96a3;
+    width: 70%;
     margin: 16px auto;
     font-size: 16px;
 }
@@ -34,8 +34,9 @@
 }
 
 .newPost-container {
-    background: #ebebeb;
+    background: #f1f0f0;
     padding: 12px;
+    margin-top: 110px;
 }
 
 /* Every row inside .newPost-container is defined with p tags */

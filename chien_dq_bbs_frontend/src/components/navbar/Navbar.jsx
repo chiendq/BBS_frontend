@@ -34,7 +34,7 @@ export const Navbar = () => {
           <nav className="navbar">
               <Link to="/" className={"nav-logo"}>Home</Link>
               <ul className="nav-links">
-                  <Link hidden={!isLoggedIn()} to="/newPost" className={"header-newPost"}>New Post</Link>
+                  <Link hidden={!isLoggedIn()} to="/posts/new" className={"header-newPost"}>New Post</Link>
                   <Link hidden={isLoggedIn()}  to="/login"   className={"header-login"}>Login</Link>
                   <Link hidden={isLoggedIn()}  to="/signup"  className={"header-signup"}>Signup</Link>
                   <Link hidden={!isLoggedIn()} to={"#"}      className={"header-username"}>

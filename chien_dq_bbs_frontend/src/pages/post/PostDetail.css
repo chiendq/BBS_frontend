@@ -4,22 +4,41 @@
     border: gray solid thin;
 }
 
+.post-title{
+    margin: 10px auto 20px;
+
+}
+
+.btn-export{
+    margin: 0;
+    background-color: rgb(0, 187, 255);
+    border-radius: 8px;
+    padding: 8px 16px;
+}
+.btn-export a{
+    margin: 0;
+    width: 100%;
+    color: white;
+    text-decoration: none;
+}
+
 .post-title a {
     text-decoration: none;
-    color: #000;
+    color: #CC3E14;
     font-size: 30px;
 }
 
 .post-info {
     display: flex;
-    width: 70%;
+    margin: 10px auto 20px;
 }
 
 .post-info p {
     width: 33%;
     color: gray;
+    margin: auto;
 }
 
 .post-content {
-
+    line-height: 25px;
 }

@@ -56,7 +56,7 @@ function App() {
                 <div className={"posts-container"}>
                     {paged.data.map((post) => (
                         <div className="post-preview" key={post.id}>
-                            <img src={`http://localhost:9000/thumbnails/${post.thumbnail}`} alt={post.title}/>
+                            <img src={`http://localhost:9000/thumbnails/${post.thumbnail}.png`} alt={post.title}/>
                             <div className="post-preview-container">
                                 <Link to={`/posts/${post.id}`} className={"post-title "}>{post.title}</Link>
                                 <div className="post-infor">
@@ -65,9 +65,13 @@ function App() {
                                     <p>Updated on: {post.updatedOn} </p>
                                 </div>
                                 <p className="post-preContent">{post.content.substring(0, 200)}...</p>
-                                <div>
-                                    <Link to={`/posts/${post.id}`} className={"post-learnMore"}>Learn more</Link>
-                                    <Export post={post}/>
+                                <div className={"learn-csv"}>
+                                    <div className={"csv"}>
+                                        <Export post={post}/>
+                                    </div>
+                                    <div className={"learn-more"}>
+                                        <Link to={`/posts/${post.id}`} className={"post-learnMore"}>Learn more</Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
