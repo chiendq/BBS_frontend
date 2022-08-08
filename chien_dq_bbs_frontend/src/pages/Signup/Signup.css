@@ -38,6 +38,14 @@
     padding: 12px;
 }
 
+.navigate {
+    display: flex;
+}
+
+.navigate input{
+    margin: 4px;
+}
+
 /* Every row inside .signup-container is defined with p tags */
 .signup p {
     padding: 12px;

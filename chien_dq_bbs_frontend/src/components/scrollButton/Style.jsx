@@ -6,7 +6,7 @@ color: green;
 `;
 
 export const Content = styled.div`
-overflowY: scroll;
+// overflowY: scroll;
 height: 2500px;
 `;
 

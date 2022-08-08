@@ -1,7 +1,7 @@
 import './Signup.css'
 import {useForm} from 'react-hook-form'
 import {useNavigate} from "react-router-dom";
-
+import {Auth} from "../../components/Auth";
 import axios from "axios";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,12 +15,7 @@ export const Signup = () => {
 
     const onSubmit = data => {
         if (data.password === data.rePassword) {
-            // const formData = new FormData();
-            // formData.append("email", data.email)
-            // formData.append("password", data.password)
-            // formData.append("username", data.username)
-
-            axios.post(`http://localhost:9000/register`, data, {withCredentials: true})
+            axios.post(`/register`, data, {withCredentials: true})
                 .then(res => {
                     toast("Welcome <3")
                     setTimeout(() => navigate("/login", {replace: true}), 2000)
@@ -40,13 +35,16 @@ export const Signup = () => {
             <ToastContainer/>
             <Navbar/>
             <form onSubmit={handleSubmit(onSubmit)} className="signup-container signup">
-                <h2 className="signup-header">Log in</h2>
+                <h2 className="signup-header">Sign up</h2>
                 <p><input type="email" placeholder="Email *" {...register("email", {required: true, min:1})} /></p>
-                <p><input type="text" placeholder="Username *" {...register("username", {required: true, min:1})} /></p>
-                <p><input type="password" placeholder="Password *" {...register("password", {required: true, min: 8})} /></p>
+                <p><input type="text" maxLength={"50"} placeholder="Username *" {...register("username", {required: true, min:1})} /></p>
+                <p><input type="password" maxLength={"20"} placeholder="Password *" {...register("password", {required: true, min: 8})} /></p>
                 <p><input type="password" placeholder="Confirm Password *" {...register("rePassword", {required: true, min: 8})} />
                 </p>
-                <p><input type="submit"/></p>
+                <div className={"navigate"}>
+                    <input style={{background:"red"}} onClick={()=>{navigate('/')}} type={"submit"} value={"Cancel"}/>
+                    <input type="submit"/>
+                </div>
             </form>
         </>
     );

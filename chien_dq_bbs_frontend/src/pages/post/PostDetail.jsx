@@ -3,19 +3,22 @@ import {useParams} from "react-router-dom";
 import React, { useState} from "react";
 import {Export} from "../../components/Export";
 import {Navbar} from "../../components/navbar/Navbar";
+import axios from "axios";
 
 export const PostDetail = () => {
 
     const [post, setPost] = useState({})
     const postId = useParams().id
 
+    const handlePostDetail = () => {
+    axios.get(`http://localhost:9000/posts/${postId}`)
+        .then(res => {
+            setPost(res.data)
+        })
+    }
+
     React.useEffect(() => {
-        fetch(`http://localhost:9000/posts/${postId}`, {method: "GET"})
-            .then(result => result.json())
-            .then(data => {
-                setPost(data)
-                console.log(data);
-            })
+       handlePostDetail()
     }, [])
 
     return (

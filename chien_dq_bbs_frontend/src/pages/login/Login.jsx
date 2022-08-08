@@ -5,7 +5,7 @@ import axios from "axios";
 import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {Navbar} from "../../components/navbar/Navbar";
-import {useContext} from "react";
+import {Auth} from "../../components/Auth";
 
 export const Login = () => {
 
@@ -14,9 +14,7 @@ export const Login = () => {
     let navigate = useNavigate();
 
     const onSubmit = data => {
-        // console.log(/^[a-zA-Z0-9\\.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(data.email))
-
-        axios.post(`http://localhost:9000/login`, data, {withCredentials: true})
+        axios.post(`/login`, data, {withCredentials: true})
             .then(res => {
                 let data = res.data
                 localStorage.setItem("username",data.username)
@@ -31,13 +29,17 @@ export const Login = () => {
 
     return (
         <>
+            <Auth/>
             <ToastContainer />
             <Navbar/>
             <form onSubmit={handleSubmit(onSubmit)} className="login-container login">
                 <h2 className="login-header">Log in</h2>
                 <p><input type="email" placeholder="Email" {...register("email", {required: true})} /></p>
                 <p><input type="password" placeholder="Password" {...register("password", {required: true, min: 8})} /></p>
-                <p><input type="submit" /></p>
+                <div className={"navigate"}>
+                    <input style={{background:"red"}} onClick={()=>{navigate('/')}} type={"submit"} value={"Cancel"}/>
+                    <input type="submit"/>
+                </div>
             </form>
         </>
     );

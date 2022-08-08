@@ -6,6 +6,7 @@ import {Export} from "./components/Export";
 import {Navbar} from "./components/navbar/Navbar";
 import {ScrollButton} from "./components/scrollButton/ScrollButton";
 import ReactLoading from 'react-loading';
+import axios from "axios";
 
 const dateFormat = "YYYY-MM-DD";
 const date = new Date("2020-06-24 22:57:36");
@@ -30,13 +31,10 @@ function App() {
     })
 
     React.useEffect(() => {
-        fetch(`http://localhost:9000/posts?pageSize=${pageSize}&pageNumber=${paged.page}`,
-            {method: "GET"}
-            )
-            .then(result => result.json())
-            .then(data => {
+        axios.get(`/posts?pageSize=${pageSize}&pageNumber=${paged.page}`)
+            .then(res => {
                 setLoading(false)
-                setPaged(data)
+                setPaged(res.data)
             })
     }, [paged.page])
 
@@ -53,16 +51,16 @@ function App() {
             <div className="App">
                 <Navbar/>
                 <ScrollButton/>
-                <div className={"posts-container"}>
+                <div className={"body"}>
                     {paged.data.map((post) => (
                         <div className="post-preview" key={post.id}>
                             <img src={`http://localhost:9000/thumbnails/${post.thumbnail}.png`} alt={post.title}/>
-                            <div className="post-preview-container">
+                            <div className="posts-container">
                                 <Link to={`/posts/${post.id}`} className={"post-title "}>{post.title}</Link>
-                                <div className="post-infor">
-                                    <p>Author: {post.authorName}</p>
-                                    <p>Created on: {post.createdAt} </p>
-                                    <p>Updated on: {post.updatedOn} </p>
+                                <div className="post-info">
+                                    <div>Author: {post.authorName}</div>
+                                    <div>Created on: {post.createdAt} </div>
+                                    <div>Updated on: {post.updatedOn} </div>
                                 </div>
                                 <p className="post-preContent">{post.content.substring(0, 200)}...</p>
                                 <div className={"learn-csv"}>
@@ -77,11 +75,7 @@ function App() {
                         </div>
                     ))}
                 </div>
-                {loading &&
-                <div style={{position: "fixed", display: "flex", alignItems: "center",justifyContent:"center", width: "100%", zIndex: 9999999, top: 0}}>
-                    <Loading type={"balls"} color={"blue"}/>
-                </div>
-                }
+                {loading && <div className={"loading"}><Loading type={"watch"} color={"blue"}/></div>}
                 <ReactPaginate
                     previousLabel={"<"}
                     nextLabel={">"}

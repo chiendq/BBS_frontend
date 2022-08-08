@@ -7,9 +7,13 @@ import {Login} from "./pages/login/Login";
 import {NewPost} from "./pages/newPost/NewPost";
 import {PostDetail} from "./pages/post/PostDetail";
 import {Signup} from "./pages/Signup/Signup";
-
+import {NotFound} from "./pages/notFound/NotFound"
+import axios from "axios";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+axios.defaults.baseURL = 'http://localhost:9000'
+axios.defaults.withCredentials = true
 
 root.render(
   <React.StrictMode>
@@ -21,6 +25,7 @@ root.render(
               <Route path={'/logout'} element={<App/>}/>
               <Route path={'/posts/new'} element={<NewPost/>}/>
               <Route path={'/posts/:id'} element={<PostDetail/>}/>
+              <Route path='*' element={<NotFound />} />
           </Routes>
       </BrowserRouter>
   </React.StrictMode>

@@ -1,12 +1,11 @@
 .post-container {
-    margin: 10%;
+    margin: 120px 20%;
     padding: 3%;
     border: gray solid thin;
 }
 
 .post-title{
-    margin: 10px auto 20px;
-
+    margin: 10px auto 10px;
 }
 
 .btn-export{
@@ -30,7 +29,7 @@
 
 .post-info {
     display: flex;
-    margin: 10px auto 20px;
+    margin: 10px auto 10px;
 }
 
 .post-info p {
@@ -41,4 +40,5 @@
 
 .post-content {
     line-height: 25px;
+    white-space: pre-line;
 }
