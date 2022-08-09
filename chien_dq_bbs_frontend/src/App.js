@@ -1,24 +1,14 @@
 import React, {useState} from "react";
-import moment from "moment";
 import ReactPaginate from "react-paginate";
 import {Link} from "react-router-dom";
 import {Export} from "./components/Export";
 import {Navbar} from "./components/navbar/Navbar";
 import {ScrollButton} from "./components/scrollButton/ScrollButton";
-import ReactLoading from 'react-loading';
 import axios from "axios";
-
-const dateFormat = "YYYY-MM-DD";
-const date = new Date("2020-06-24 22:57:36");
-
-const dateTime = moment(date).format(dateFormat);
 
 const pageSize = 10
 
 function App() {
-    const Loading = ({ type, color }) => (
-        <ReactLoading type={type} color={color} height={667} width={375} />
-    );
 
     const [loading, setLoading] = useState(true)
 
@@ -58,9 +48,9 @@ function App() {
                             <div className="posts-container">
                                 <Link to={`/posts/${post.id}`} className={"post-title "}>{post.title}</Link>
                                 <div className="post-info">
-                                    <div>Author: {post.authorName}</div>
-                                    <div>Created on: {post.createdAt} </div>
-                                    <div>Updated on: {post.updatedOn} </div>
+                                    <div className="col3"> Author: {post.authorName}</div>
+                                    <div className="col3">Created on: {post.createdAt} </div>
+                                    <div className="col3">Updated on: {post.updatedOn} </div>
                                 </div>
                                 <p className="post-preContent">{post.content.substring(0, 200)}...</p>
                                 <div className={"learn-csv"}>
@@ -74,17 +64,18 @@ function App() {
                             </div>
                         </div>
                     ))}
+
+                    <ReactPaginate
+                        previousLabel={"<"}
+                        nextLabel={">"}
+                        breakLabel={"..."}
+                        pageCount={paged.total_page}
+                        onPageChange={handlePageClick}
+                        containerClassName={"pagination"}
+                        subContainerClassName={"pages pagination"}
+                        activeClassName={"active"}/>
                 </div>
-                {loading && <div className={"loading"}><Loading type={"watch"} color={"blue"}/></div>}
-                <ReactPaginate
-                    previousLabel={"<"}
-                    nextLabel={">"}
-                    breakLabel={"..."}
-                    pageCount={paged.total_page}
-                    onPageChange={handlePageClick}
-                    containerClassName={"pagination"}
-                    subContainerClassName={"pages pagination"}
-                    activeClassName={"active"}/>
+
             </div>
         </>
     );

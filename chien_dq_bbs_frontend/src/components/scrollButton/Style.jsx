@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 
-export const Heading = styled.h1`
-text-align: center;
-color: green;
-`;
 
 export const Content = styled.div`
-// overflowY: scroll;
 height: 2500px;
 `;
 
@@ -19,5 +14,5 @@ height: 20px;
 font-size: 4rem;
 z-index: 1;
 cursor: pointer;
-color: blue;
+color: #65c9f6;
 `

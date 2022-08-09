@@ -107,10 +107,19 @@ export const NewPost = () => {
             <form onSubmit={onSubmit} className="newPost-container newPost">
                 <h2 className={"page-title"}>Create new post</h2>
                 <p><input style={{borderColor: title.length ? "" :"red"}} onChangeCapture={handleTitle} defaultValue={title} type="text" placeholder="Title *" maxLength="150"/></p>
+                {!title && <p style={{color:"red"}}>Title is required</p>}
                 <p><input style={{borderColor: authorName?.length ? "" :"red"}} onChangeCapture={handleAuthorName} defaultValue={authorName} type="text" placeholder="Author *" maxLength="50"/></p>
+                {!authorName && <p style={{color:"red"}}>Author is required</p>}
                 <p><textarea style={{borderColor: content.length ? "" :"red"}} onChangeCapture={handleContent} defaultValue={content} placeholder={"Content *"}/></p>
-                <p><input className={"input-thumbnail"} name={"input-thumbnail"} id={"input-thumbnail"} onChangeCapture={handleOnchangeThumbnail} accept={["image/png","image/jpeg"]} type={"file"} placeholder="Thumbnail *"/></p>
-                <p className={"label-thumbnail"}><label htmlFor="input-thumbnail">Choose a file</label></p>
+                {!content && <p style={{color:"red"}}>Content is required</p>}
+                <p>
+                    <input className={"input-thumbnail"} name={"input-thumbnail"}
+                           id={"input-thumbnail"} onChangeCapture={handleOnchangeThumbnail}
+                           accept={["image/png","image/jpeg"]} type={"file"}
+                           placeholder="Thumbnail *"/>
+                </p>
+                <p className={"label-thumbnail"} ><label htmlFor="input-thumbnail">Choose a file</label></p>
+                {!thumbnail && <p style={{color:"red"}}>Thumbnail is required</p>}
                 <p>{ img != null && <img id="preview-thumbnail" src={img} alt="your image" />}</p>
                 <p><input type="submit"/></p>
             </form>

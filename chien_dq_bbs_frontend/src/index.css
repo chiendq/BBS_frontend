@@ -6,7 +6,7 @@
 }
 
 .body{
-  margin-top: 130px;
+  margin-top: 56px;
 }
 
 .post-preview{
@@ -22,7 +22,7 @@
   display: block;
   font-size: 24px;
   text-decoration: none;
-  color :rgb(0, 187, 255);
+  color : #EE2E31;
   font-weight: bold;
 }
 
@@ -43,6 +43,10 @@
   display: flex;
 }
 
+.col3{
+  width: 33%;
+}
+
 .post-preContent{
   overflow:  hidden;
   height: 100%;
@@ -52,7 +56,7 @@
 
 .post-learnMore{
   margin: 0;
-  background-color: rgb(0, 187, 255);
+  background-color: #fa4949;
   border-radius: 8px;
   padding: 8px 16px;
 }
@@ -65,8 +69,17 @@
   margin: 0px 10px;
 }
 
+.export a:hover{
+  background-color: #009fe7;
+
+}
+
+.learn-more a:hover{
+  background-color: #ff0000;
+}
+
 .csv a{
-  background-color: rgb(0, 187, 255);
+  background-color: #65c9f6;
   border-radius: 8px;
   padding: 8px 16px;
   text-decoration: none;
@@ -90,29 +103,29 @@
 
 .pagination {
   justify-content: center;
-  margin: 15px auto;
+  margin: 30px auto 60px;
   display: flex;
   list-style: none;
   outline: none;
 }
 .pagination > .active > a{
-  background-color: #47ccde ;
-  border-color: #47ccde ;
+  background-color: #65c9f6 ;
+  border-color: #65c9f6 ;
   color: #fff;
 }
 .pagination > li > a{
-  border: 1px solid #47ccde ;
+  border: 1px solid #65c9f6 ;
   padding: 5px 10px;
   outline: none;
   cursor: pointer;
 }
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
-  background-color: #47ccde ;
-  border-color: #47ccde;
+  background-color: #65c9f6 ;
+  border-color: #65c9f6;
   outline: none ;
 }
 .pagination > li > a, .pagination > li > span{
-  color: #47ccde
+  color: #65c9f6
 }
 .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span{
   border-radius: unset

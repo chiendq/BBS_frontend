@@ -58,7 +58,7 @@
     width: 100%;
 }
 .label-thumbnail label{
-    background-color: red;
+    background-color: #888;
     display: flex;
     justify-content: center;
     padding: 4px;
