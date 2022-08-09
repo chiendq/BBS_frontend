@@ -10,8 +10,8 @@ export const PostDetail = () => {
     const [post, setPost] = useState({})
     const postId = useParams().id
 
-    const handlePostDetail = () => {
-    axios.get(`http://localhost:9000/posts/${postId}`)
+    const handlePostDetail = async () => {
+    await axios.get(`http://localhost:9000/posts/${postId}`)
         .then(res => {
             setPost(res.data)
         })

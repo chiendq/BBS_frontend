@@ -3,10 +3,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import './NewPost.css'
 import {useNavigate} from "react-router-dom";
 import {Navbar} from "../../components/navbar/Navbar";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import axios from "axios";
 import {Auth} from "../../components/Auth";
-
+import {Input} from "../../components/inputs/Input";
 
 export const NewPost = () => {
     const [title, setTitle]             = useState("New title")
@@ -29,44 +29,14 @@ export const NewPost = () => {
         }
     }
 
-    const handleTitle = (e) => {
-        setTitle(e.target.value);
-    }
-
-    const handleAuthorName = (e) => {
-        setAuthorName(e.target.value);
-    }
-
     const handleContent = (e) => {
         setContent(e.target.value);
     }
 
-    const validateSubmit = () => {
-      if(title.length === 0) {
-          toast("Title is required!");
-          return false;
-      }
-      if(authorName.length === 0) {
-            toast("Author is required!");
-            return false;
-      }
-        if(content.length === 0) {
-            toast("Content is required!");
-            return false;
-        }
-        if(thumbnail === null) {
-            toast("Thumbnail is required!");
-            return false;
-        }
-      return true;
-    }
 
-    const onSubmit = (e) => {
-        if(! validateSubmit()) {
-            e.preventDefault();
-            return;
-        }
 
+    const onSubmit =  async  (e) => {
+        e.preventDefault()
         const formData = new FormData();
         formData.append("accountId", localStorage.getItem("accountId"));
         formData.append("title", title);
@@ -74,7 +44,7 @@ export const NewPost = () => {
         formData.append("content", content);
         formData.append("file", thumbnail);
 
-        axios.post(`/posts`, formData,
+         await axios.post(`/posts`, formData,
             {
                 withCredentials: true,
                 headers:{
@@ -96,7 +66,6 @@ export const NewPost = () => {
                     navigate("/login", { replace: true });
                 }
             })
-        e.preventDefault()
     }
 
     return (
@@ -106,20 +75,18 @@ export const NewPost = () => {
             <Navbar/>
             <form onSubmit={onSubmit} className="newPost-container newPost">
                 <h2 className={"page-title"}>Create new post</h2>
-                <p><input style={{borderColor: title.length ? "" :"red"}} onChangeCapture={handleTitle} defaultValue={title} type="text" placeholder="Title *" maxLength="150"/></p>
-                {!title && <p style={{color:"red"}}>Title is required</p>}
-                <p><input style={{borderColor: authorName?.length ? "" :"red"}} onChangeCapture={handleAuthorName} defaultValue={authorName} type="text" placeholder="Author *" maxLength="50"/></p>
-                {!authorName && <p style={{color:"red"}}>Author is required</p>}
+                <Input name={"Title"} prob={title} setProb={setTitle} maxLength={150} type={"text"}  />
+                <Input name={"Author"} prob={authorName} setProb={setAuthorName} maxLength={50} type={"text"}  />
                 <p><textarea style={{borderColor: content.length ? "" :"red"}} onChangeCapture={handleContent} defaultValue={content} placeholder={"Content *"}/></p>
                 {!content && <p style={{color:"red"}}>Content is required</p>}
                 <p>
-                    <input className={"input-thumbnail"} name={"input-thumbnail"}
-                           id={"input-thumbnail"} onChangeCapture={handleOnchangeThumbnail}
-                           accept={["image/png","image/jpeg"]} type={"file"}
-                           placeholder="Thumbnail *"/>
+                    <input className={"input-thumbnail"} onChangeCapture={handleOnchangeThumbnail}
+                           accept={["image/png","image/jpeg"]} type={"file"} placeholder="Thumbnail *"/>
                 </p>
-                <p className={"label-thumbnail"} ><label htmlFor="input-thumbnail">Choose a file</label></p>
-                {!thumbnail && <p style={{color:"red"}}>Thumbnail is required</p>}
+                <p className={"label-thumbnail"} >
+                    <label htmlFor="input-thumbnail">Choose a file</label>
+                </p>
+                <div>{!thumbnail && <p style={{color:"red"}}>Thumbnail is required</p>}</div>
                 <p>{ img != null && <img id="preview-thumbnail" src={img} alt="your image" />}</p>
                 <p><input type="submit"/></p>
             </form>
