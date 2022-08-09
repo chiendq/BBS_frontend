@@ -45,7 +45,7 @@ function App() {
                 <Navbar/>
                 <ScrollButton/>
                 <div className={"body"}>
-                    {paged.data.map((post) => (<PreviewPost post={post}/>))}
+                    {paged.data.map((post) => (<PreviewPost key={post.id} post={post}/>))}
                 <ReactPaginate
                     previousLabel={"<"}
                     nextLabel={">"}

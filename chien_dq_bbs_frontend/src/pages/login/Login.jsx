@@ -6,7 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import {Navbar} from "../../components/navbar/Navbar";
 import {Auth} from "../../components/Auth";
 import {useState} from "react";
-import {EmailInput} from "../../components/validation/EmailInput";
+import {EmailInput} from "../../components/inputs/EmailInput";
+import {PasswordInput} from "../../components/inputs/PasswordInput";
+import {SubmitAndCancelButton} from "../../components/SubmitAndCancelButton";
 
 export const Login = () => {
 
@@ -51,19 +53,9 @@ export const Login = () => {
             <Navbar/>
             <form onSubmit={onSubmit} className="login-container login">
                 <h2 className="login-header">Log in</h2>
-                <EmailInput email={email}/>
-                <p><input style={{borderColor: password.length ? "" : "red"}} type="password" placeholder="Password"
-                          onChangeCapture={handlePassword}/></p>
-                {password.length === 0 && <p style={{color: "red"}}>Password is required</p>}
-                {!validatePassword(password) &&
-                    <p style={{color: "red"}}>Password must have at least 8 characters including letters, numbers and
-                        special characters</p>}
-                <div className={"navigate"}>
-                    <input style={{background: "red"}} onClick={() => {
-                        navigate('/')
-                    }} type={"submit"} value={"Cancel"}/>
-                    <input type="submit"/>
-                </div>
+                <EmailInput email={email} setEmail={setEmail}/>
+                <PasswordInput password={password} setPassword={setPassword} placeHolder={"Password *"}/>
+                <SubmitAndCancelButton/>
             </form>
         </>
     );
