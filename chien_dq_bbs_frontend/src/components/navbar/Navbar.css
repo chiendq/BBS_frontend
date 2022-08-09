@@ -51,13 +51,13 @@
     background: rgb(42, 105, 130);
 }
 
-.sign-in-icon {
-    display: inline-block;
-    margin-right: 0.8em;
-}
-
-
-
 .header-username {
     pointer-events: none
+}
+
+.welcome{
+    text-align: center;
+    margin: 5px 0;
+    font-size: 20px;
+    font-weight: bold;
 }

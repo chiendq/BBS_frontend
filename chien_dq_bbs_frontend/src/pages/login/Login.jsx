@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {Navbar} from "../../components/navbar/Navbar";
 import {Auth} from "../../components/Auth";
 import {useState} from "react";
+import {EmailInput} from "../../components/validation/EmailInput";
 
 export const Login = () => {
 
@@ -16,14 +17,12 @@ export const Login = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-
         try {
             const res = await axios.post(
                 `/login`,
                 {email, password},
                 {withCredentials: true}
             )
-
             let data = res.data;
             localStorage.setItem("username", data.username);
             localStorage.setItem("accountId", data.accountId);
@@ -34,16 +33,12 @@ export const Login = () => {
         }
     }
 
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-    }
+
     const handlePassword = (e) => {
         setPassword(e.target.value);
     }
 
-    const validateEmail = (email) => {
-        return /\w+@\w+\.\w{2,}/.test(email);
-    }
+
 
     const validatePassword = (password) => {
         return /.*\W.*/.test(password) && /.*[a-zA-Z].*/.test(password) && /.*[0-9].*/.test(password);
@@ -56,10 +51,7 @@ export const Login = () => {
             <Navbar/>
             <form onSubmit={onSubmit} className="login-container login">
                 <h2 className="login-header">Log in</h2>
-                <p><input style={{borderColor: email.length ? "" : "red"}} type="email" placeholder="Email"
-                          onChangeCapture={handleEmail}/></p>
-                {email.length === 0 && <p style={{color: "red"}}>Email is required</p>}
-                {!validateEmail(email) && <p style={{color: "red"}}>Email must has format xxx@yy.zz</p>}
+                <EmailInput email={email}/>
                 <p><input style={{borderColor: password.length ? "" : "red"}} type="password" placeholder="Password"
                           onChangeCapture={handlePassword}/></p>
                 {password.length === 0 && <p style={{color: "red"}}>Password is required</p>}

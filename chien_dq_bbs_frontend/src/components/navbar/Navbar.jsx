@@ -38,10 +38,11 @@ export const Navbar = () => {
                   <Link hidden={isLoggedIn()}  to="/login"   className={"header-login"}>Login</Link>
                   <Link hidden={isLoggedIn()}  to="/signup"  className={"header-signup"}>Signup</Link>
                   <Link hidden={!isLoggedIn()} to={"#"}      className={"header-username"}>
-                      <div style={{textAlign:"center", margin: "5px 0px", fontSize:"20px", fontWeight:"bold"}}>Welcome</div>
+                      <div className="welcome">Welcome</div>
                       <div>{localStorage.getItem("username")}</div>
                   </Link>
-                  <Link onClick={handleLogout} hidden={!isLoggedIn()} to="/logout" className={"header-logout"}>Logout</Link>              </ul>
+                  <Link onClick={handleLogout} hidden={!isLoggedIn()} to="/logout" className={"header-logout"}>Logout</Link>
+              </ul>
           </nav>
       </>
   )
