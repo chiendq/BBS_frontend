@@ -35,17 +35,6 @@ export const Login = () => {
         }
     }
 
-
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-    }
-
-
-
-    const validatePassword = (password) => {
-        return /.*\W.*/.test(password) && /.*[a-zA-Z].*/.test(password) && /.*[0-9].*/.test(password);
-    }
-
     return (
         <>
             <Auth/>

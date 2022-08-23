@@ -33,8 +33,6 @@ export const NewPost = () => {
         setContent(e.target.value);
     }
 
-
-
     const onSubmit =  async  (e) => {
         e.preventDefault()
         const formData = new FormData();
@@ -52,7 +50,8 @@ export const NewPost = () => {
                 }})
             .then(res => {
                 toast("Create post successfully!");
-                navigate("/");
+                setTimeout(()=>{navigate("/");}, 2000)
+
             })
             .catch( e => {
                 if(e.response.status === 400){
@@ -80,7 +79,7 @@ export const NewPost = () => {
                 <p><textarea style={{borderColor: content.length ? "" :"red"}} onChangeCapture={handleContent} defaultValue={content} placeholder={"Content *"}/></p>
                 {!content && <p style={{color:"red"}}>Content is required</p>}
                 <p>
-                    <input className={"input-thumbnail"} onChangeCapture={handleOnchangeThumbnail}
+                    <input className={"input-thumbnail"} id={"input-thumbnail"} onChangeCapture={handleOnchangeThumbnail}
                            accept={["image/png","image/jpeg"]} type={"file"} placeholder="Thumbnail *"/>
                 </p>
                 <p className={"label-thumbnail"} >
