@@ -1,2 +1,3 @@
-# chien_dq_bbs_frontend
+# Simple Bulletin Board System
 
+This repo very simple and just aim to display result from  Bulletin Board System_Backend
